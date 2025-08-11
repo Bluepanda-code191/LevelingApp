@@ -1,0 +1,656 @@
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Chewy&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Orbitron", sans-serif;
+  min-height: 100dvh;
+  overflow: hidden;
+  width: 100%;
+  background-color: #081b29;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+:root {
+  --color-menu-button: invert(58%) sepia(88%) saturate(2000%) hue-rotate(90deg)
+    brightness(100%) contrast(110%);
+  --color-bg-dark: #0a1524;
+  --color-accent: #00c851;
+  --color-progress: #00c851;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cccccc;
+  --color-box-border: #28a745;
+  --color-box-bg: rgba(10, 21, 36, 0.85);
+  --color-border-skill: #28a745a4;
+  --color-shadow: #00c85199;
+  --fs-h5: 12px;
+}
+
+section {
+  display: none;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+section.show {
+  display: flex;
+  opacity: 1;
+}
+
+.container {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  position: relative;
+  width: 400px;
+  border: 1px solid;
+}
+.container::-webkit-scrollbar {
+  display: none;
+}
+.container .navbar {
+  border-top: 2px solid rgba(204, 204, 204, 0.4392156863);
+  width: 100%;
+  padding: 8px 0 0;
+  position: absolute;
+  bottom: 0;
+  justify-content: space-around;
+  display: flex;
+}
+.container .navbar .nav-item {
+  width: 13%;
+}
+.container .navbar .nav-item.active img {
+  filter: invert(100%) brightness(200%);
+}
+.container .navbar img {
+  width: 100%;
+  filter: var(--color-menu-button);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.container .navbar img:hover {
+  filter: invert(100%) brightness(200%);
+}
+.container .info {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 10px 20px 20px;
+  background-color: #081b29;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-text-secondary);
+}
+.container .info .level {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.container .info .level .level-skor {
+  font-size: var(--fs-h5);
+}
+.container .info .level .progress-bar {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background-color: transparent;
+  border: 1px solid var(--color-progress);
+}
+.container .info .level .progress-bar .progress {
+  position: absolute;
+  left: 0;
+  height: 8px;
+  background-color: var(--color-progress);
+}
+.container .info .profil {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.container .info .profil .name {
+  font-size: 16px;
+}
+.container .info .profil .fire,
+.container .info .profil .return {
+  font-size: 30px;
+  color: var(--color-accent);
+  filter: drop-shadow(0 0 1px --color-accent);
+}
+.container .info .profil .return {
+  font-size: 25px;
+  cursor: pointer;
+}
+.container .main {
+  position: absolute;
+  margin-top: 26px;
+  padding: 0 10px;
+  width: 100%;
+}
+.container .daily-tasks {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.container .daily-tasks .header-content {
+  position: relative;
+  width: 100%;
+  color: var(--color-text-secondary);
+}
+.container .daily-tasks .header-content .header {
+  font-weight: 500;
+}
+.container .daily-tasks .streak-box {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  border: 2px solid var(--color-box-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-right: 20px;
+  font-size: var(--fs-h5);
+  text-transform: uppercase;
+}
+.container .daily-tasks .streak-box::before {
+  content: "";
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  transform: rotate(30deg);
+  border: 2px solid var(--color-box-border);
+}
+.container .daily-tasks .tasks-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  width: 75%;
+  text-align: center;
+  border: 2px solid var(--color-box-border);
+  padding: 40px 0;
+}
+.container .daily-tasks .tasks-box .tasks-content {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  font-size: var(--fs-h5);
+  text-transform: uppercase;
+}
+.container .daily-tasks .tasks-box .tasks-content .task-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.container .daily-tasks .tasks-box .tasks-content .task-item input {
+  position: relative;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  /* Tampilkan centangnya saat dicentang */
+}
+.container .daily-tasks .tasks-box .tasks-content .task-item input:checked {
+  background-color: var(--color-accent);
+}
+.container .daily-tasks .tasks-box .tasks-content .task-item input::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  left: 6px;
+  top: 1px;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.container .daily-tasks .tasks-box .tasks-content .task-item input:checked::after {
+  opacity: 1;
+}
+.container .daily-tasks .tasks-box .tasks-content .warning span {
+  color: red;
+  text-shadow: 0 0 1px #f93939;
+}
+.container .quests {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+}
+.container .quests .header-content {
+  position: relative;
+  width: 100%;
+  color: var(--color-text-secondary);
+}
+.container .quests .header-content .header {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.container .quests .description {
+  font-size: var(--fs-h5);
+}
+.container .quests .achievement {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  border: 2px solid var(--color-box-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+.container .quests .achievement::before {
+  content: "";
+  position: absolute;
+  width: 53px;
+  height: 53px;
+  transform: rotate(30deg);
+  border: 2px solid var(--color-box-border);
+}
+.container .quests .achievement .trophy {
+  font-size: 22px;
+}
+.container .quests .quests-box {
+  width: 100%;
+  margin-top: 30px;
+}
+.container .quests .quests-box .quests-skill {
+  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  height: 220px;
+}
+.container .quests .quests-box .quests-skill .skill-item {
+  padding: 15px;
+  width: 100%;
+  border: 2px solid var(--color-box-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.container .quests .quests-box .quests-skill .skill-item:hover {
+  transform: scale(1.05);
+}
+.container .quests .quests-box .quests-skill .skill-item .content {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.container .quests .quests-box .quests-skill .skill-item .content i {
+  margin-right: 10px;
+  font-size: 2.5rem;
+}
+.container .quests .quests-box .quests-skill .skill-item .content .heart {
+  font-size: 2.8rem;
+  margin-right: 20px;
+}
+.container .quests .quests-box .quests-skill .skill-item .content .social {
+  margin-right: 20px;
+}
+.container .quests .quests-box .quests-skill .skill-item .progress-bar {
+  position: relative;
+  width: 75%;
+  height: 8px;
+  background-color: transparent;
+  border: 1px solid var(--color-progress);
+}
+.container .quests .quests-box .quests-skill .skill-item .progress-bar .progress {
+  position: absolute;
+  left: 0;
+  height: 8px;
+  background-color: var(--color-progress);
+}
+.container .quests .quests-box .personal-quests {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding: 15px;
+  width: 100%;
+  border: 2px solid var(--color-box-border);
+  gap: 15px;
+  height: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.container .quests .quests-box .personal-quests:hover {
+  transform: scale(1.02);
+}
+.container .quests .quests-box .personal-quests i {
+  font-size: 3rem;
+}
+.container .quests .quests-box .personal-quests .text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.container .quests .main-str,
+.container .quests .main-int,
+.container .quests .main-att,
+.container .quests .main-soc,
+.container .quests .main-personal {
+  display: none;
+  flex-direction: column;
+}
+.container .quests .main-skill {
+  display: flex;
+  width: 100%;
+}
+.container .quests .main-skill .content {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.container .quests .main-skill .main-content {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.container .quests .main-skill .main-content .extra-quests {
+  width: 100%;
+  border-top: 1px solid var(--color-box-border);
+}
+.container .quests .main-skill .main-content .extra-quests h2 {
+  font-size: 20px;
+  padding-top: 10px;
+}
+.container .quests .main-skill .main-content .item {
+  border: 2px solid var(--color-border-skill);
+  padding: 10px 10px 15px;
+  display: flex;
+  gap: 5px;
+  position: relative;
+}
+.container .quests .main-skill .main-content .item .text {
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 90%;
+}
+.container .quests .main-skill .main-content .item .done {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: #fff;
+  background-color: transparent;
+  font-size: 12px;
+  border: 2px solid var(--color-border-skill);
+  padding: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+.container .quests .main-personal {
+  width: 100%;
+}
+.container .quests .main-personal .content {
+  position: relative;
+}
+.container .quests .main-personal .content #addQuests {
+  position: absolute;
+  right: -55px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  background-color: var(--color-accent);
+  padding: 8px 9px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  color: #081b29;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.container .quests .main-personal .content #addQuests:hover {
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  background-color: #081b29;
+}
+.container .quests .main-personal .add-quests-con {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: #0a1524;
+  z-index: 99;
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  border: 2px solid var(--color-border-skill);
+}
+.container .quests .main-personal .add-quests-con .header {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.container .quests .main-personal .add-quests-con .input-quests {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+.container .quests .main-personal .add-quests-con .input-quests input {
+  color: #fff;
+  text-transform: capitalize;
+  background-color: transparent;
+  outline: none;
+  font-size: 16px;
+  padding: 8px;
+  border: 2px solid var(--color-border-skill);
+}
+.container .quests .main-personal .add-quests-con .input-quests input::-moz-placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.container .quests .main-personal .add-quests-con .input-quests input::placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.container .quests .main-personal .add-quests-con .input-quests input.task-description {
+  height: 100px;
+}
+.container .quests .main-personal .add-quests-con .input-quests .button {
+  display: flex;
+  justify-content: center;
+}
+.container .quests .main-personal .add-quests-con .input-quests .button button {
+  font-size: 16px;
+  background-color: transparent;
+  border: 2px solid var(--color-border-skill);
+  color: #fff;
+  padding: 8px 10px;
+  text-transform: capitalize;
+}
+.container .quests .main-personal .add-quests-con #cancel {
+  text-transform: capitalize;
+  position: absolute;
+  font-size: 16px;
+  background-color: transparent;
+  outline: none;
+  border: 2px solid var(--color-border-skill);
+  color: #fff;
+  padding: 5px;
+  bottom: 15px;
+  right: 15px;
+}
+.container .quests .main-personal .add-quests-con button {
+  cursor: pointer;
+}
+.container .status {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container .status .header-content {
+  position: relative;
+  width: 100%;
+  color: var(--color-text-secondary);
+}
+.container .status .header-content .header {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.container .status .header-content .description {
+  font-size: var(--fs-h5);
+}
+.container .status .header-content .rank {
+  position: absolute;
+  right: 0;
+  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.container .status .header-content .rank .rank-box {
+  width: 55px;
+  height: 55px;
+  border: 2px solid var(--color-box-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+.container .status .header-content .rank .rank-box::before {
+  content: "";
+  position: absolute;
+  width: 53px;
+  height: 53px;
+  transform: rotate(30deg);
+  border: 2px solid var(--color-box-border);
+}
+.container .status .header-content .rank .rank-box .rank-name {
+  font-size: 40px;
+}
+.container .status .status-box {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.container .status .status-box .profil-status {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid var(--color-box-border);
+  padding: 20px;
+  align-items: center;
+}
+.container .status .status-box .profil-status .image-wrapper {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: rgba(204, 204, 204, 0.8);
+  box-shadow: 0 0 20px var(--color-accent);
+  overflow: hidden;
+}
+.container .status .status-box .profil-status .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.container .status .status-box .profil-status .image-wrapper img:hover {
+  transform: scale(1.1);
+}
+.container .status .status-box .profil-status .profil {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.container .status .status-box .profil-status .level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container .status .status-box .profil-status .level .level-skor {
+  font-size: 40px;
+}
+.container .status .status-box .skill-status {
+  width: 100%;
+  border: 2px solid var(--color-box-border);
+  padding: 20px;
+  display: flex;
+}
+.container .status .status-box .skill-status .skill-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.container .status .status-box .skill-status .skill-item:first-child {
+  align-items: flex-start;
+}
+.container .status .status-box .skill-status .skill-item:last-child {
+  align-items: flex-end;
+}
+.container .status .status-box .skill-status .skill {
+  display: flex;
+  gap: 10px;
+}
+.container .status .status-box .mix-skill {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+.container .status .status-box .mix-skill .skill-item {
+  position: relative;
+  width: 100%;
+  border: 2px solid var(--color-box-border);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.container .status .status-box .mix-skill .skill-item .content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.container .status .status-box .mix-skill .skill-item .content i {
+  font-size: 40px;
+}
+.container .status .status-box .mix-skill .skill-item .progress-bar {
+  position: relative;
+  width: 90%;
+  height: 8px;
+  background-color: transparent;
+  border: 1px solid var(--color-progress);
+}
+.container .status .status-box .mix-skill .skill-item .progress-bar .progress {
+  position: absolute;
+  left: 0;
+  height: 8px;
+  background-color: var(--color-progress);
+}
+.container .status .status-box .mix-skill .skill-item .poinEnd,
+.container .status .status-box .mix-skill .skill-item .poinCha {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  font-size: 16px;
+}/*# sourceMappingURL=style.css.map */

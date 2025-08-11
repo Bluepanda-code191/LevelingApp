@@ -1,0 +1,14 @@
+@mixin border($bx1, $bx2) {
+  width: $bx1;
+  height: $bx1;
+  border: 2px solid var(--color-box-border);
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: $bx2;
+    height: $bx2;
+    transform: rotate(30deg);
+    border: 2px solid var(--color-box-border);
+  }
+}

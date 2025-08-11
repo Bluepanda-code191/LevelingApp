@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leveling</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="nav-item active" onclick="showMenu('daily-tasks', this)">
+          <img src="assets/Task-List-Clock--Streamline-Nova.png" alt="" />
+        </div>
+        <div class="nav-item" onclick="showMenu('inventory', this)">
+          <img src="assets/Backpack--Streamline-Plump.png" alt="" />
+        </div>
+        <div class="nav-item" onclick="showMenu('quests', this)">
+          <img src="assets/Task-List-Lock--Streamline-Nova.png" alt="" />
+        </div>
+        <div class="nav-item" onclick="showMenu('status', this)">
+          <img src="assets/User-Profile-Circle--Streamline-Nova.png" alt="" />
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="level">
+          <h5 class="level-skor">LVL: <span id="level">1</span></h5>
+          <div class="progress-bar">
+            <div class="progress" id="xpBar"></div>
+          </div>
+        </div>
+
+        <div class="profil">
+          <h5 class="name">Yuu</h5>
+          <i class="fa-solid fa-fire-flame-curved fire" id="backBtn"></i>
+        </div>
+      </div>
+
+      <div class="main">
+        <section class="daily-tasks show" id="daily-tasks">
+          <div class="header-content">
+            <h1 class="header">Daily Tasks</h1>
+            <div class="streak-box">
+              <span class="streak-skor">0</span>
+              <h5 class="streak">Streak</h5>
+            </div>
+          </div>
+
+          <div class="tasks-box">
+            <div class="tasks-content">
+              <div class="task-item">
+                <input type="checkbox" class="checkbox" />
+                <h4 class="task-content">
+                  100 PushUps <span class="task-poin">55/100</span>
+                </h4>
+              </div>
+              <div class="task-item">
+                <input type="checkbox" class="checkbox" />
+                <h4 class="task-content">
+                  100 PushUps <span class="task-poin">55/100</span>
+                </h4>
+              </div>
+              <div class="task-item">
+                <input type="checkbox" class="checkbox" />
+                <h4 class="task-content">
+                  100 PushUps <span class="task-poin">55/100</span>
+                </h4>
+              </div>
+
+              <h4 class="time">Timer: <span id="time">06:10:34</span></h4>
+
+              <h4 class="warning">
+                failure to complete the daily quest will result in an
+                appropriate <span>penalty</span>
+              </h4>
+            </div>
+          </div>
+        </section>
+
+        <section class="inventory" id="inventory"></section>
+
+        <section class="quests" id="quests">
+          <div class="header-content">
+            <h1 class="header">Quests</h1>
+            <h5 class="description">Complete quests to increase your stats</h5>
+            <div class="achievement">
+              <i class="fa-solid fa-trophy trophy"></i>
+            </div>
+          </div>
+
+          <div class="quests-box">
+            <div class="quests-skill">
+              <div class="skill-item" id="strenght">
+                <div class="content">
+                  <i class="fa-solid fa-dumbbell"></i>
+                  <h4 class="skill-name">Strenght</h4>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress" id="xpBarStr"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" id="intelligence">
+                <div class="content">
+                  <i class="fa-solid fa-brain"></i>
+                  <h4 class="skill-name">Intelligence</h4>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress" id="xpBarInt"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" id="attitude">
+                <div class="content">
+                  <i class="fa-solid fa-heart heart"></i>
+                  <h4 class="skill-name">Attitude</h4>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress" id="xpBarAtt"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" id="social">
+                <div class="content">
+                  <i class="fa-solid fa-people-group social"></i>
+                  <h4 class="skill-name">Social</h4>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress" id="xpBarSoc"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="personal-quests skill-item" id="personal">
+              <i class="fa-solid fa-bullseye target"></i>
+              <div class="text">
+                <h4 class="quests-name">Personal Quests</h4>
+                <p><span id="totalQuests">0</span> Quests Remaining</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="main-skill">
+            <div class="main-str">
+              <div class="content">
+                <h1 class="quests-name">Strenght Quests</h1>
+
+                <p class="description">
+                  Strenght Quests for player to increase strenght stats
+                </p>
+              </div>
+
+              <div class="main-content">
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Weight Training</h4>
+                    <p class="description">
+                      Lakukan latihan beban seperti push, pull, dan leg untuk
+                      meningkatkan kekuatan otot dan daya tahan tubuh.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Cardio Boost</h4>
+                    <p class="description">
+                      Lakukan latihan kardio seperti jogging, skipping, atau
+                      jumping jack untuk meningkatkan detak jantung dan stamina.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">stretching routine</h4>
+                    <p class="description">
+                      Lakukan stretching ringan untuk melemaskan otot dan
+                      meningkatkan fleksibilitas tubuh.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Quality Sleep</h4>
+                    <p class="description">
+                      Tidur cukup dan berkualitas sangat penting untuk pemulihan
+                      otot, kesehatan otak, dan semangat harian. Pastikan kamu
+                      tidur minimal 7 jam malam ini.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">track your progress</h4>
+                    <p class="description">
+                      Catat latihan, jumlah set, durasi, dan perasaanmu setiap
+                      hari. Dengan melacak progres, kamu bisa melihat seberapa
+                      jauh kamu sudah berkembang dan tahu kapan waktunya naik
+                      level!
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="extra-quests">
+                  <h2>Extra Quests</h2>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">active rest day</h4>
+                    <p class="description">
+                      Gunakan hari ini untuk bergerak ringan seperti jalan
+                      santai atau peregangan. Biarpun istirahat dari latihan
+                      berat, tubuh tetap aktif dan pulih dengan lebih baik.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Stay Hydrated</h4>
+                    <p class="description">
+                      Minum setidaknya 2 liter air dalam sehari untuk menjaga
+                      keseimbangan cairan tubuh, meningkatkan fokus, dan
+                      mendukung fungsi organ. Tubuh yang terhidrasi bekerja
+                      lebih optimal, terutama saat beraktivitas fisik.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">fuel with protein</h4>
+                    <p class="description">
+                      Isi ulang energi tubuh dengan asupan protein berkualitas.
+                      Nutrisi ini penting untuk membangun otot, mempercepat
+                      pemulihan, dan menjaga tubuh tetap kuat setelah latihan.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Sunlight Exposure</h4>
+                    <p class="description">
+                      Dapatkan sinar matahari pagi selama 10-15 menit untuk
+                      membantu tubuh memproduksi vitamin D secara alami. Ini
+                      penting untuk tulang yang kuat, suasana hati yang stabil,
+                      dan daya tahan tubuh yang optimal.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Shadow Boxing</h4>
+                    <p class="description">
+                      Latihan shadow boxing melibatkan gerakan tinju tanpa lawan
+                      untuk meningkatkan koordinasi, kelincahan, dan stamina.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="main-int">
+              <div class="content">
+                <h1 class="quests-name">Intelligence Quests</h1>
+
+                <p class="description">
+                  Intelligence Quests for player to increase Intelligence stats
+                </p>
+              </div>
+
+              <div class="main-content">
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Strategic Games</h4>
+                    <p class="description">
+                      Mainkan game strategi seperti catur, Sudoku, atau
+                      permainan taktis lain yang menantang pikiran. Ini membantu
+                      melatih logika dan perencanaan jangka panjang.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Daily Reading habit</h4>
+                    <p class="description">
+                      Baca minimal 1 bab dari buku fiksi atau nonfiksi yang
+                      bermakna. Aktivitas ini melatih fokus, menambah kosakata,
+                      dan membuka wawasan.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">language learning</h4>
+                    <p class="description">
+                      Belajar bahasa baru melalui aplikasi, video, atau buku.
+                      Fokus pada satu bagian per hari seperti kosakata atau
+                      kalimat sederhana. Ini memperkuat daya ingat dan membuka
+                      cakrawala baru.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">puzzle time</h4>
+                    <p class="description">
+                      Selesaikan satu soal logika, teka-teki, atau soal
+                      matematika ringan setiap hari. Ini mengasah kemampuan
+                      berpikir analitis dan ketelitian.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">learning a new skill</h4>
+                    <p class="description">
+                      Pelajari satu skill baru yang produktif, seperti coding,
+                      desain, atau alat musik. Mulailah dari dasar dan teruskan
+                      secara konsisten untuk membentuk kecerdasan praktis.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="extra-quests">
+                  <h2>Extra Quests</h2>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">public speaking practice</h4>
+                    <p class="description">
+                      Latih kemampuan berbicara dengan menyampaikan ide atau
+                      materi pelajaran di depan cermin atau lewat rekaman. Ini
+                      membentuk keberanian dan kemampuan mengatur alur berpikir.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Mind mapping</h4>
+                    <p class="description">
+                      Buat peta pikiran untuk topik yang ingin kamu pahami lebih
+                      dalam. Teknik ini memperkuat koneksi antar ide dan
+                      membantu berpikir terstruktur.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">watch educational video</h4>
+                    <p class="description">
+                      Tonton 1 video edukatif dari YouTube atau platform
+                      belajar. Fokus pada topik yang bermanfaat dan catat poin
+                      pentingnya. Ini memadukan hiburan dan pembelajaran.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">note review & rewrite</h4>
+                    <p class="description">
+                      Ambil catatan sekolah atau pelajaran, lalu tulis ulang
+                      dengan gaya kamu sendiri. Ini memperkuat pemahaman dan
+                      membuat belajar jadi aktif, bukan pasif.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">teach what you learn</h4>
+                    <p class="description">
+                      Ajarkan apa yang kamu pelajari hari ini ke orang lain,
+                      walau cuma lewat cerita. Menjelaskan ulang memperkuat
+                      pemahaman dan melatih kemampuan komunikasi ilmiah.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+              </div>
+            </div>
+            <div class="main-att">
+              <div class="content">
+                <h1 class="quests-name">Attitude Quests</h1>
+
+                <p class="description">
+                  Attitude Quests for player to increase Attitude stats
+                </p>
+              </div>
+
+              <div class="main-content">
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">daily gratitude</h4>
+                    <p class="description">
+                      Tuliskan 3 hal yang kamu syukuri hari ini. Ini melatih
+                      pikiran untuk fokus pada hal baik, bukan kekurangan.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">self reflection</h4>
+                    <p class="description">
+                      Ambil waktu untuk menulis satu hal yang kamu sesali atau
+                      pelajari hari ini. Introspeksi membuat kamu lebih dewasa
+                      secara mental.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">no procrastination day</h4>
+                    <p class="description">
+                      Ambil satu tugas penting dan kerjakan langsung tanpa
+                      menunda. Ini memperkuat mental pejuang dalam diri kamu.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Morning Discipline</h4>
+                    <p class="description">
+                      Bangun lebih awal dari biasanya, lalu langsung produktif
+                      (merapikan tempat tidur, stretching, dsb). Ini memperkuat
+                      kontrol diri sejak pagi.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Fail & Learn</h4>
+                    <p class="description">
+                      Tulis satu kegagalan atau kesalahan hari ini, lalu cari
+                      pelajaran yang bisa diambil. Setiap jatuh harus jadi titik
+                      naik.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="extra-quests">
+                  <h2>Extra Quests</h2>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Consistency Tracker</h4>
+                    <p class="description">
+                      Pilih satu kebiasaan baik dan lakukan 7 hari
+                      berturut-turut. Konsistensi lebih penting dari motivasi
+                      sesaat.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Mindful Journaling</h4>
+                    <p class="description">
+                      Tuliskan perasaan atau kejadian penting hari ini. Jujur
+                      pada diri sendiri adalah bentuk keberanian.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">10-Minute Focus</h4>
+                    <p class="description">
+                      Lakukan 1 aktivitas fokus (tanpa gangguan HP) selama 10
+                      menit penuh. Ini melatih kekuatan mental dan konsentrasi.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Apologize Sincerely</h4>
+                    <p class="description">
+                      Minta maaf dengan tulus ke seseorang atas kesalahan kecil
+                      atau besar. Mengakui salah adalah tanda karakter yang
+                      kuat.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Reject One Temptation</h4>
+                    <p class="description">
+                      Tolak satu kebiasaan buruk atau godaan (contoh: skip
+                      tugas, nonton sampai malam). Kemenangan kecil ini
+                      memperkuat mental juara.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+              </div>
+            </div>
+            <div class="main-soc">
+              <div class="content">
+                <h1 class="quests-name">Social Quests</h1>
+
+                <p class="description">
+                  Social Quests for player to increase Social stats
+                </p>
+              </div>
+
+              <div class="main-content">
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">One Compliment A Day</h4>
+                    <p class="description">
+                      Beri pujian tulus kepada orang lain. Kebaikan kecil bisa
+                      bikin hari seseorang lebih cerah.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Help Someone</h4>
+                    <p class="description">
+                      Bantu orang lain tanpa diminta, sekecil apapun bantuannya.
+                      Ini membentuk kepekaan dan rasa peduli.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Say Thank You</h4>
+                    <p class="description">
+                      Ucapkan terima kasih secara langsung dan tulus ke
+                      seseorang hari ini. Menghargai orang lain memperkuat
+                      hubungan.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Listen Fully</h4>
+                    <p class="description">
+                      Luangkan waktu 5 menit mendengarkan cerita seseorang tanpa
+                      memotong. Ini menguatkan rasa dihargai dalam diri orang
+                      lain.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Random Act of Kindness</h4>
+                    <p class="description">
+                      Lakukan satu kebaikan acak hari ini — membawakan barang,
+                      meminjamkan alat, atau hanya tersenyum. Kebaikan itu
+                      menular.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="extra-quests">
+                  <h2>Extra Quests</h2>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Deep Conversation</h4>
+                    <p class="description">
+                      Ajak ngobrol seseorang lebih dalam dari biasanya,
+                      dengarkan tanpa menyela. Ini melatih empati dan koneksi
+                      emosional.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Introduce Yourself</h4>
+                    <p class="description">
+                      Perkenalkan diri ke seseorang yang belum kamu kenal,
+                      minimal 1 kalimat. Ini menumbuhkan keberanian sosial.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Join a Group Chat/Forum</h4>
+                    <p class="description">
+                      Aktif berpartisipasi dalam komunitas atau diskusi, baik
+                      online maupun offline. Ini memperluas relasi dan melatih
+                      keberanian bicara.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Group Collaboration</h4>
+                    <p class="description">
+                      Kerja sama dalam tim (kelas, tugas kelompok, ekskul) dan
+                      ambil peran aktif. Ini melatih kepemimpinan dan
+                      fleksibilitas sosial.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+
+                <div class="item">
+                  <div class="text">
+                    <h4 class="header">Share a Story</h4>
+                    <p class="description">
+                      Ceritakan pengalaman pribadi ke teman, keluarga, atau
+                      guru. Ini memperkuat hubungan dan membuka sisi personal.
+                    </p>
+                  </div>
+                  <button class="done">Done</button>
+                </div>
+              </div>
+            </div>
+            <div class="main-personal">
+              <div class="content">
+                <h1 class="quests-name">personal quests</h1>
+
+                <p class="description">quests based on players own will</p>
+                <i class="fa-solid fa-plus" id="addQuests"></i>
+              </div>
+
+              <div class="add-quests-con">
+                <h4 class="header">Add your quest</h4>
+
+                <form class="input-quests">
+                  <input
+                    type="text"
+                    placeholder="task title"
+                    class="task-title"
+                  />
+                  <input
+                    type="text"
+                    placeholder="task description"
+                    class="task-description"
+                  />
+                  <div class="button">
+                    <button type="submit" id="add-task">add task</button>
+                  </div>
+                </form>
+                <button id="cancel">cancel</button>
+              </div>
+
+              <div class="main-content"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="status" id="status">
+          <div class="header-content">
+            <h1 class="header">Status</h1>
+            <h5 class="description">Your stats and Rank</h5>
+
+            <div class="rank">
+              <div class="rank-box">
+                <h1 class="rank-name">E</h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-box">
+            <div class="profil-status">
+              <div class="image-wrapper">
+                <img src="assets/Bluepanda.jpeg" alt="" />
+              </div>
+              <div class="profil">
+                <h5 class="name">Name: <span id="name">Yuu</span></h5>
+                <h5 class="class">Class: <span id="class">Healer</span></h5>
+                <h5 class="title">Title: <span id="title">Beginner</span></h5>
+              </div>
+
+              <div class="level">
+                <h2 id="level" class="level-skor">1</h2>
+                <h5>Level</h5>
+              </div>
+            </div>
+
+            <div class="skill-status">
+              <div class="skill-item">
+                <div class="skill">
+                  <i class="fa-solid fa-dumbbell"></i>
+                  <h5 class="name-skill">
+                    STR: <span class="poinStr">1</span>
+                  </h5>
+                </div>
+
+                <div class="skill">
+                  <i class="fa-solid fa-brain"></i>
+                  <h5 class="name-skill">
+                    INT: <span class="poinInt">1</span>
+                  </h5>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill">
+                  <i class="fa-solid fa-heart heart"></i>
+                  <h5 class="name-skill">
+                    ATT: <span class="poinAtt">1</span>
+                  </h5>
+                </div>
+
+                <div class="skill">
+                  <i class="fa-solid fa-people-group social"></i>
+                  <h5 class="name-skill">
+                    SOC: <span class="poinSoc">1</span>
+                  </h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="mix-skill">
+              <div class="skill-item">
+                <div class="content">
+                  <i class="fa-solid fa-shield"></i>
+                  <h5 class="skill-name">Endurance</h5>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress" id="xpBarEnd"></div>
+                </div>
+                <h5 class="poinEnd">1</h5>
+              </div>
+
+              <div class="skill-item">
+                <div class="content">
+                  <i class="fa-solid fa-crown"></i>
+                  <h5 class="skill-name">Charisma</h5>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress" id="xpBarCha"></div>
+                </div>
+                <h5 class="poinCha">1</h5>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
