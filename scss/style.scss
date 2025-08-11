@@ -248,6 +248,7 @@ section {
   }
 
   .quests {
+    width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -310,6 +311,10 @@ section {
             margin-bottom: 10px;
             display: flex;
             align-items: center;
+
+            .skill-name{
+              font-size: 15px;
+            }
 
             i {
               margin-right: 10px;
@@ -379,8 +384,6 @@ section {
       display: none;
       flex-direction: column;
     }
-
-    
 
     .main-skill {
       display: flex;
@@ -468,7 +471,7 @@ section {
         position: fixed;
         bottom: 50%;
         right: 50%;
-        transform: translate(50%,50%);
+        transform: translate(50%, 50%);
         background-color: #0a1524;
         z-index: 99;
         display: none;
