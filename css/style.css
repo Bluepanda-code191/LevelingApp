@@ -8,7 +8,6 @@
 body {
   font-family: "Orbitron", sans-serif;
   min-height: 100dvh;
-  overflow: hidden;
   width: 100%;
   background-color: #081b29;
   color: #fff;
@@ -31,6 +30,10 @@ body {
   --fs-h5: 12px;
 }
 
+button {
+  cursor: pointer;
+}
+
 section {
   display: none;
   opacity: 0;
@@ -41,12 +44,319 @@ section.show {
   opacity: 1;
 }
 
+.add-daily-con {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: #0a1524;
+  z-index: 99;
+  color: #fff;
+  display: none;
+  opacity: 1;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  border: 2px solid var(--color-border-skill);
+}
+.add-daily-con .header {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.add-daily-con input {
+  color: #fff;
+  text-transform: capitalize;
+  background-color: transparent;
+  outline: none;
+  font-size: 16px;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 2px solid var(--color-border-skill);
+}
+.add-daily-con input::-moz-placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.add-daily-con input::placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.add-daily-con .button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+.add-daily-con .button button {
+  width: 50%;
+  font-size: 15px;
+  background-color: transparent;
+  border: 2px solid var(--color-border-skill);
+  color: #fff;
+  padding: 8px 10px;
+  text-transform: capitalize;
+}
+
+.add-quests-con {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: #0a1524;
+  z-index: 99;
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  border: 2px solid var(--color-border-skill);
+}
+.add-quests-con .header {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.add-quests-con .input-quests {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+.add-quests-con .input-quests input {
+  color: #fff;
+  text-transform: capitalize;
+  background-color: transparent;
+  outline: none;
+  font-size: 16px;
+  padding: 8px;
+  border: 2px solid var(--color-border-skill);
+}
+.add-quests-con .input-quests input::-moz-placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.add-quests-con .input-quests input::placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.add-quests-con .input-quests input.task-description {
+  height: 100px;
+}
+.add-quests-con .input-quests .button {
+  display: flex;
+  justify-content: center;
+}
+.add-quests-con .input-quests .button button {
+  font-size: 16px;
+  background-color: transparent;
+  border: 2px solid var(--color-border-skill);
+  color: #fff;
+  padding: 8px 10px;
+  text-transform: capitalize;
+}
+.add-quests-con #cancel-quests {
+  text-transform: capitalize;
+  position: absolute;
+  font-size: 16px;
+  background-color: transparent;
+  outline: none;
+  border: 2px solid var(--color-border-skill);
+  color: #fff;
+  padding: 5px;
+  bottom: 15px;
+  right: 15px;
+}
+.add-quests-con button {
+  cursor: pointer;
+}
+
+.name-container,
+.hobby-container {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: #0a1524;
+  z-index: 99;
+  color: #fff;
+  display: none;
+  opacity: 1;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  width: 300px;
+  height: 180px;
+  border: 2px solid rgba(30, 75, 255, 0.4);
+}
+.name-container .header,
+.hobby-container .header {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.name-container input,
+.hobby-container input {
+  color: #fff;
+  text-transform: capitalize;
+  background-color: transparent;
+  outline: none;
+  font-size: 16px;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 2px solid rgba(30, 75, 255, 0.4);
+}
+.name-container input::-moz-placeholder, .hobby-container input::-moz-placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.name-container input::placeholder,
+.hobby-container input::placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.name-container .button,
+.hobby-container .button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.name-container .button button,
+.hobby-container .button button {
+  font-size: 15px;
+  background-color: transparent;
+  border: 2px solid rgba(30, 75, 255, 0.4);
+  color: #fff;
+  padding: 8px 10px;
+  text-transform: capitalize;
+}
+
+.change-name-con {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: #0a1524;
+  z-index: 99;
+  color: #fff;
+  display: none;
+  opacity: 1;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  border: 2px solid var(--color-border-skill);
+}
+.change-name-con .header {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.change-name-con input {
+  color: #fff;
+  text-transform: capitalize;
+  background-color: transparent;
+  outline: none;
+  font-size: 16px;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 2px solid var(--color-border-skill);
+}
+.change-name-con input::-moz-placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.change-name-con input::placeholder {
+  text-transform: capitalize;
+  color: #fff;
+}
+.change-name-con .button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+.change-name-con .button button {
+  width: 50%;
+  font-size: 15px;
+  background-color: transparent;
+  border: 2px solid var(--color-border-skill);
+  color: #fff;
+  padding: 8px 10px;
+  text-transform: capitalize;
+}
+
+.introduction {
+  width: 380px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.introduction.focus {
+  opacity: 0.4;
+}
+.introduction .image-wrapper {
+  width: 100%;
+  position: relative;
+  top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.introduction .image-wrapper img {
+  filter: drop-shadow(0 0 20px #050a44);
+  width: 80%;
+}
+.introduction .dialog-box {
+  position: relative;
+  border: 2px solid rgba(30, 75, 255, 0.4);
+  box-shadow: 0 0 20px #050a44;
+  height: 100px;
+  background-color: #081b29;
+}
+.introduction .dialog-box .speech {
+  text-transform: capitalize;
+  padding: 20px 8px 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.introduction .dialog-box .name {
+  position: absolute;
+  top: -20px;
+  left: 5px;
+  width: -moz-min-content;
+  width: min-content;
+  padding: 8px;
+  border-radius: 50px;
+  font-size: 16px;
+  background-color: rgba(30, 75, 255, 0.4);
+}
+.introduction .button {
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+}
+.introduction .button button {
+  background-color: rgba(30, 75, 255, 0.4);
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 7px 15px;
+  font-size: 15px;
+}
+
 .container {
+  display: none;
   overflow-y: scroll;
   scrollbar-width: none;
   position: relative;
-  width: 400px;
+  width: 380px;
   border: 1px solid;
+}
+.container.focus {
+  opacity: 0.6;
 }
 .container::-webkit-scrollbar {
   display: none;
@@ -115,6 +425,8 @@ section.show {
 }
 .container .info .profil .name {
   font-size: 16px;
+  cursor: pointer;
+  text-transform: capitalize;
 }
 .container .info .profil .fire,
 .container .info .profil .return {
@@ -170,28 +482,106 @@ section.show {
   transform: rotate(30deg);
   border: 2px solid var(--color-box-border);
 }
-.container .daily-tasks .tasks-box {
+.container .daily-tasks .tasks-wrapper {
+  width: 80%;
   display: flex;
   justify-content: center;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.container .daily-tasks .tasks-box {
+  display: flex;
   margin-top: 40px;
-  width: 75%;
   text-align: center;
-  border: 2px solid var(--color-box-border);
-  padding: 40px 0;
+  width: 100%;
+  gap: 60px;
 }
 .container .daily-tasks .tasks-box .tasks-content {
-  max-width: 90%;
+  border: 2px solid var(--color-border-skill);
+  padding: 20px 0 30px;
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  font-size: 11px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  font-size: var(--fs-h5);
+  gap: 30px;
   text-transform: uppercase;
+}
+.container .daily-tasks .tasks-box .tasks-content:last-child .header {
+  position: relative;
+}
+.container .daily-tasks .tasks-box .tasks-content:last-child .header::before, .container .daily-tasks .tasks-box .tasks-content:last-child .header::after {
+  width: 70%;
+}
+.container .daily-tasks .tasks-box .tasks-content:last-child i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #081b29;
+  padding: 3px 4px 3px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.container .daily-tasks .tasks-box .tasks-content:last-child i:hover {
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  background-color: #081b29;
+}
+.container .daily-tasks .tasks-box .tasks-content:last-child .tasks-item {
+  justify-content: start;
+}
+.container .daily-tasks .tasks-box .tasks-content .header {
+  position: relative;
+  padding: 5px 0 6px;
+  font-size: 15px;
+}
+.container .daily-tasks .tasks-box .tasks-content .header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  transform: translateX(50%);
+  width: 50%;
+  height: 2px;
+  background-color: var(--color-box-border);
+}
+.container .daily-tasks .tasks-box .tasks-content .header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+  width: 50%;
+  height: 2px;
+  background-color: var(--color-box-border);
+}
+.container .daily-tasks .tasks-box .tasks-content .tasks-item {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 150px;
+  justify-content: center;
+  width: 150px;
+  margin: 0 auto;
+  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 .container .daily-tasks .tasks-box .tasks-content .task-item {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
+  margin-bottom: 10px;
+}
+.container .daily-tasks .tasks-box .tasks-content .task-item .task-content {
+  text-align: start;
+  max-width: 150px;
 }
 .container .daily-tasks .tasks-box .tasks-content .task-item input {
   position: relative;
@@ -201,6 +591,8 @@ section.show {
   background-color: #fff;
   width: 20px;
   height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   cursor: pointer;
   /* Tampilkan centangnya saat dicentang */
 }
@@ -223,6 +615,11 @@ section.show {
 .container .daily-tasks .tasks-box .tasks-content .task-item input:checked::after {
   opacity: 1;
 }
+.container .daily-tasks .tasks-box .tasks-content .description-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .container .daily-tasks .tasks-box .tasks-content .warning span {
   color: red;
   text-shadow: 0 0 1px #f93939;
@@ -241,7 +638,7 @@ section.show {
 }
 .container .quests .header-content .header {
   font-weight: 500;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 .container .quests .description {
   font-size: var(--fs-h5);
@@ -432,78 +829,6 @@ section.show {
   border: 2px solid var(--color-accent);
   background-color: #081b29;
 }
-.container .quests .main-personal .add-quests-con {
-  position: fixed;
-  bottom: 50%;
-  right: 50%;
-  transform: translate(50%, 50%);
-  background-color: #0a1524;
-  z-index: 99;
-  display: none;
-  flex-direction: column;
-  padding: 20px;
-  align-items: center;
-  width: 300px;
-  height: 300px;
-  border: 2px solid var(--color-border-skill);
-}
-.container .quests .main-personal .add-quests-con .header {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.container .quests .main-personal .add-quests-con .input-quests {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
-}
-.container .quests .main-personal .add-quests-con .input-quests input {
-  color: #fff;
-  text-transform: capitalize;
-  background-color: transparent;
-  outline: none;
-  font-size: 16px;
-  padding: 8px;
-  border: 2px solid var(--color-border-skill);
-}
-.container .quests .main-personal .add-quests-con .input-quests input::-moz-placeholder {
-  text-transform: capitalize;
-  color: #fff;
-}
-.container .quests .main-personal .add-quests-con .input-quests input::placeholder {
-  text-transform: capitalize;
-  color: #fff;
-}
-.container .quests .main-personal .add-quests-con .input-quests input.task-description {
-  height: 100px;
-}
-.container .quests .main-personal .add-quests-con .input-quests .button {
-  display: flex;
-  justify-content: center;
-}
-.container .quests .main-personal .add-quests-con .input-quests .button button {
-  font-size: 16px;
-  background-color: transparent;
-  border: 2px solid var(--color-border-skill);
-  color: #fff;
-  padding: 8px 10px;
-  text-transform: capitalize;
-}
-.container .quests .main-personal .add-quests-con #cancel {
-  text-transform: capitalize;
-  position: absolute;
-  font-size: 16px;
-  background-color: transparent;
-  outline: none;
-  border: 2px solid var(--color-border-skill);
-  color: #fff;
-  padding: 5px;
-  bottom: 15px;
-  right: 15px;
-}
-.container .quests .main-personal .add-quests-con button {
-  cursor: pointer;
-}
 .container .status {
   flex-direction: column;
   align-items: center;
@@ -583,6 +908,9 @@ section.show {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+.container .status .status-box .profil-status .profil span {
+  text-transform: capitalize;
 }
 .container .status .status-box .profil-status .level {
   display: flex;

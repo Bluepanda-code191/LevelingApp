@@ -14,6 +14,79 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <div class="name-container">
+      <h4 class="header">Your Name</h4>
+
+      <input type="text" placeholder="Player Name" class="player-name" />
+
+      <div class="button">
+        <button type="submit" id="input-player-name">submit</button>
+      </div>
+    </div>
+
+    <div class="hobby-container">
+      <h4 class="header">Your Favorite</h4>
+
+      <input type="text" placeholder="Your Hobby" class="player-hobby" />
+
+      <div class="button">
+        <button type="submit" id="input-player-hobby">submit</button>
+      </div>
+    </div>
+
+    <div class="introduction">
+      <div class="image-wrapper">
+        <img src="assets/shadow-man.png" alt="" />
+      </div>
+      
+      <div class="dialog-box">
+        <h4 class="name">Unknown</h4>
+        <p id="speech" class="speech"></p>
+        <div class="button">
+          <button id="nextBtn">Next</button>
+        </div>
+      </div>
+
+    </div>
+    <form class="change-name-con">
+      <h4 class="header">Change your Name</h4>
+
+      <input type="text" placeholder="Player Name" class="player-name" />
+
+      <div class="button">
+        <button type="submit" id="add-name">Change Name</button>
+        <button id="cancel-name">cancel</button>
+      </div>
+    </form>
+
+    <div class="add-daily-con">
+      <h4 class="header">Add your quest</h4>
+
+      <input type="text" placeholder="Daily Task" id="inputDailyTask" />
+
+      <div class="button">
+        <button id="add-daily-task">Add Task</button>
+        <button id="cancel-daily-quest">cancel</button>
+      </div>
+    </div>
+
+    <div class="add-quests-con">
+      <h4 class="header">Add your quest</h4>
+
+      <form class="input-quests">
+        <input type="text" placeholder="task title" class="task-title" />
+        <input
+          type="text"
+          placeholder="task description"
+          class="task-description"
+        />
+        <div class="button">
+          <button type="submit" id="add-task">add task</button>
+        </div>
+      </form>
+      <button id="cancel-quests">cancel</button>
+    </div>
+
     <div class="container">
       <div class="navbar">
         <div class="nav-item active" onclick="showMenu('daily-tasks', this)">
@@ -39,7 +112,7 @@
         </div>
 
         <div class="profil">
-          <h5 class="name">Yuu</h5>
+          <h5 class="name name-player" id="change-name">Yuu</h5>
           <i class="fa-solid fa-fire-flame-curved fire" id="backBtn"></i>
         </div>
       </div>
@@ -53,34 +126,52 @@
               <h5 class="streak">Streak</h5>
             </div>
           </div>
+          <div class="tasks-wrapper">
+            <div class="tasks-box">
+              <div class="tasks-content">
+                <h2 class="header">Quest Info</h2>
+                <div class="tasks-item">
+                  <div class="task-item">
+                    <input type="checkbox" class="checkbox" />
+                    <h4 class="task-content">Read A book</h4>
+                  </div>
+                  <div class="task-item">
+                    <input type="checkbox" class="checkbox" />
+                    <h4 class="task-content">Calm Your Mind</h4>
+                  </div>
+                  <div class="task-item">
+                    <input type="checkbox" class="checkbox" />
+                    <h4 class="task-content">Greet Someone</h4>
+                  </div>
+                </div>
+                <div class="description-item">
+                  <h4 class="time">Timer: <span id="time">06:10:34</span></h4>
 
-          <div class="tasks-box">
-            <div class="tasks-content">
-              <div class="task-item">
-                <input type="checkbox" class="checkbox" />
-                <h4 class="task-content">
-                  100 PushUps <span class="task-poin">55/100</span>
-                </h4>
-              </div>
-              <div class="task-item">
-                <input type="checkbox" class="checkbox" />
-                <h4 class="task-content">
-                  100 PushUps <span class="task-poin">55/100</span>
-                </h4>
-              </div>
-              <div class="task-item">
-                <input type="checkbox" class="checkbox" />
-                <h4 class="task-content">
-                  100 PushUps <span class="task-poin">55/100</span>
-                </h4>
+                  <h4 class="warning">
+                    failure to complete the daily quest will result in an
+                    appropriate <span>penalty</span>
+                  </h4>
+                </div>
               </div>
 
-              <h4 class="time">Timer: <span id="time">06:10:34</span></h4>
+              <div class="tasks-content" id="personalDailyTask">
+                <h2 class="header">
+                  Personal Quests
+                  <span>
+                    <i class="fa-solid fa-plus" id="addDailyQuests"></i
+                  ></span>
+                </h2>
 
-              <h4 class="warning">
-                failure to complete the daily quest will result in an
-                appropriate <span>penalty</span>
-              </h4>
+                <div class="tasks-item"></div>
+
+                <div class="description-item">
+                  <h4 class="time">Timer: <span id="time">06:10:34</span></h4>
+
+                  <h4 class="warning">
+                    add new quests using the <br />plus sign above
+                  </h4>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -90,7 +181,10 @@
         <section class="quests" id="quests">
           <div class="header-content">
             <h1 class="header">Quests</h1>
-            <h5 class="description">Complete quests to increase your stats</h5>
+            <h5 class="description">
+              Complete quests to increase <br />
+              your stats
+            </h5>
             <div class="achievement">
               <i class="fa-solid fa-trophy trophy"></i>
             </div>
@@ -694,27 +788,6 @@
                 <i class="fa-solid fa-plus" id="addQuests"></i>
               </div>
 
-              <div class="add-quests-con">
-                <h4 class="header">Add your quest</h4>
-
-                <form class="input-quests">
-                  <input
-                    type="text"
-                    placeholder="task title"
-                    class="task-title"
-                  />
-                  <input
-                    type="text"
-                    placeholder="task description"
-                    class="task-description"
-                  />
-                  <div class="button">
-                    <button type="submit" id="add-task">add task</button>
-                  </div>
-                </form>
-                <button id="cancel">cancel</button>
-              </div>
-
               <div class="main-content"></div>
             </div>
           </div>
@@ -738,8 +811,8 @@
                 <img src="assets/Bluepanda.jpeg" alt="" />
               </div>
               <div class="profil">
-                <h5 class="name">Name: <span id="name">Yuu</span></h5>
-                <h5 class="class">Class: <span id="class">Healer</span></h5>
+                <h5 class="name">Name: <span class="name-player"></span></h5>
+                <h5 class="class">Favorite: <span id="favorite"></span></h5>
                 <h5 class="title">Title: <span id="title">Beginner</span></h5>
               </div>
 

@@ -1,3 +1,148 @@
+const introContainer = document.querySelector(".introduction");
+const container = document.querySelector(".container");
+
+const dialogues = [
+  {
+    text: "Hai Player... selamat datang di dunia leveling.",
+  },
+  {
+    text: "Aku ingin tahu... siapa namamu",
+  },
+  {
+    text: "Hm, Menarik... jadi namamu []",
+  },
+  {
+    text: "Kalau begitu, apa yang paling kau sukai?",
+  },
+  {
+    text: "...",
+  },
+  {
+    text: "Baiklah, hanya dirimulah yang berhak menentukan jalanmu di sini.”",
+  },
+  {
+    text: "Kini saatnya membuktikan, apakah kau cukup kuat untuk naik level... atau berhenti di awal.",
+  },
+  {
+    text: "Bersiaplah, perjalananmu dimulai sekarang.",
+  },
+];
+
+let currentIndex = 0;
+let typingIndex = 0;
+let isTyping = false;
+
+const speechElement = document.getElementById("speech");
+const nextBtn = document.getElementById("nextBtn");
+
+function typeWriter(text, callback) {
+  isTyping = true;
+  speechElement.textContent = "";
+  typingIndex = 0;
+
+  const typing = setInterval(() => {
+    speechElement.textContent += text[typingIndex];
+    typingIndex++;
+
+    if (typingIndex >= text.length) {
+      clearInterval(typing);
+      isTyping = false;
+
+      if (callback) callback();
+    }
+  }, 40);
+}
+
+const nameContainer = document.querySelector(".name-container");
+const hobbyContainer = document.querySelector(".hobby-container");
+const nameInput = document.querySelector(".player-name");
+const hobbyInput = document.querySelector(".player-hobby");
+const nameSubmitBtn = document.getElementById("input-player-name");
+const hobbySubmitBtn = document.getElementById("input-player-hobby");
+
+let playerName = "";
+let playerHobby = "";
+let askedNameShown = false;
+let askedHobbyShown = false;
+
+function loadDialogue(index) {
+  const dialog = dialogues[index];
+
+  if (index === 0) {
+    speechElement.textContent = "";
+    setTimeout(() => {
+      typeWriter(dialog.text);
+    }, 1500);
+  } else {
+    typeWriter(dialog.text);
+  }
+}
+
+nextBtn.addEventListener("click", () => {
+  if (isTyping) return;
+
+  if (getComputedStyle(nameContainer).display !== "none") return;
+  if (getComputedStyle(hobbyContainer).display !== "none") return;
+
+  if (currentIndex === 1 && !askedNameShown) {
+    nameContainer.style.display = "flex";
+    introContainer.classList.add("focus");
+    askedNameShown = true;
+    return;
+  }
+
+  if (currentIndex === 3 && !askedHobbyShown) {
+    hobbyContainer.style.display = "flex";
+    introContainer.classList.add("focus");
+    askedHobbyShown = true;
+    return;
+  }
+
+  if (currentIndex === dialogues.length - 1) {
+    introContainer.style.display = "none";
+    container.style.display = "block";
+    return;
+  }
+
+  currentIndex = Math.min(currentIndex + 1, dialogues.length - 1);
+  loadDialogue(currentIndex);
+});
+
+nameSubmitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  playerName = nameInput.value.trim();
+  nameContainer.style.display = "none";
+  introContainer.classList.remove("focus");
+
+  dialogues[2].text = `Hm, Menarik... jadi namamu ${playerName}`;
+  dialogues[5].text = `Baiklah ${playerName}, hanya dirimulah yang berhak menentukan jalanmu di sini.`;
+
+  const namePlayer = document.querySelectorAll(".name-player");
+  namePlayer.forEach((name) => {
+    name.textContent = playerName;
+  });
+  currentIndex = 2;
+  loadDialogue(currentIndex);
+});
+
+hobbySubmitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  playerHobby = hobbyInput.value.trim();
+  hobbyContainer.style.display = "none";
+  introContainer.classList.remove("focus");
+
+  const favorite = document.querySelector("#favorite");
+  favorite.textContent = playerHobby;
+  currentIndex = 4;
+  loadDialogue(currentIndex);
+});
+
+loadDialogue(currentIndex);
+window.dataLayer = window.dataLayer || [];
+function gtag() {
+  dataLayer.push(arguments);
+}
+
 function showMenu(menuId, element) {
   document
     .querySelectorAll("section")
@@ -8,6 +153,99 @@ function showMenu(menuId, element) {
     .forEach((btn) => btn.classList.remove("active"));
   element.classList.add("active");
 }
+
+const addDailyQuest = document.getElementById("addDailyQuests");
+const addDailyCon = document.querySelector(".add-daily-con");
+const cancelDailyQuest = document.getElementById("cancel-daily-quest");
+
+addDailyQuest.addEventListener("click", () => {
+  cancelDailyQuest.addEventListener("click", () => {
+    container.classList.remove("focus");
+    addDailyCon.style.display = "none";
+  });
+
+  container.classList.add("focus");
+  addDailyCon.style.display = "flex";
+});
+
+const addDailyTask = document.getElementById("add-daily-task");
+
+addDailyTask.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const inputDailyTask = document.getElementById("inputDailyTask").value.trim();
+
+  if (inputDailyTask === "") {
+    container.classList.remove("focus");
+    addDailyCon.style.display = "none";
+    return;
+  }
+
+  const tasksItem = document.querySelector("#personalDailyTask .tasks-item");
+
+  const newItem = document.createElement("div");
+  newItem.classList.add("task-item");
+  newItem.innerHTML = `
+  <input type="checkbox" class="checkbox" />
+  <h4 class="task-content">${inputDailyTask}</h4>
+  `;
+
+  newItem.querySelectorAll(".checkbox").forEach((check) => {
+    check.addEventListener("change", () => {
+      if (check.checked) {
+        xp += 25;
+      } else {
+        xp -= 25;
+        if (xp < 0) xp = 0;
+      }
+      updateLevel();
+      updateXPBar();
+    });
+  });
+
+  tasksItem.appendChild(newItem);
+
+  document.getElementById("inputDailyTask").value = "";
+
+  container.classList.remove("focus");
+  addDailyCon.style.display = "none";
+});
+
+const changeName = document.getElementById("change-name");
+const cancelName = document.getElementById("cancel-name");
+const changeNameCon = document.querySelector(".change-name-con");
+
+changeName.addEventListener("click", () => {
+  cancelName.addEventListener("click", () => {
+    changeNameCon.style.display = "none";
+    container.classList.remove("focus");
+  });
+
+  changeNameCon.style.display = "flex";
+  container.classList.add("focus");
+});
+
+const addName = document.getElementById("add-name");
+
+addName.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  playerName = nameInput.value.trim();
+
+  if (nameInput === "") {
+    changeNameCon.style.display = "none";
+    container.classList.remove("focus");
+    return;
+  }
+
+  const namePlayer = document.querySelectorAll(".name-player");
+
+  namePlayer.forEach((name) => {
+    name.textContent = playerName;
+  });
+  changeNameCon.style.display = "none";
+  container.classList.remove("focus");
+});
 
 const checkboxList = document.querySelectorAll(".checkbox");
 let xp = 0;
@@ -119,7 +357,7 @@ questList.forEach((quest) => {
 });
 
 const addQuests = document.getElementById("addQuests");
-const cancelQuests = document.getElementById("cancel");
+const cancelQuests = document.getElementById("cancel-quests");
 
 const addTask = document.getElementById("add-task");
 
@@ -128,8 +366,10 @@ addQuests.addEventListener("click", () => {
 
   cancelQuests.addEventListener("click", () => {
     conQuest.style.display = "none";
+    container.classList.remove("focus");
   });
   conQuest.style.display = "flex";
+  container.classList.add("focus");
 });
 
 const totalQuests = document.getElementById("totalQuests");
@@ -147,6 +387,7 @@ addTask.addEventListener("click", (e) => {
 
   if (titleInput === "") {
     document.querySelector(".add-quests-con").style.display = "none";
+    container.classList.remove("focus");
     return;
   }
 
@@ -178,6 +419,7 @@ addTask.addEventListener("click", (e) => {
   document.querySelector(".task-description").value = "";
 
   document.querySelector(".add-quests-con").style.display = "none";
+  container.classList.remove("focus");
 
   const totalTasks = newItem.length;
   console.log(totalTasks);
