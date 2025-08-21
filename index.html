@@ -14,31 +14,41 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="name-container">
+    <form class="name-container">
       <h4 class="header">Your Name</h4>
 
-      <input type="text" placeholder="Player Name" class="player-name" />
+      <input
+        type="text"
+        placeholder="Player Name"
+        class="player-name"
+        required
+      />
 
       <div class="button">
         <button type="submit" id="input-player-name">submit</button>
       </div>
-    </div>
+    </form>
 
-    <div class="hobby-container">
+    <form class="hobby-container">
       <h4 class="header">Your Favorite</h4>
 
-      <input type="text" placeholder="Your Hobby" class="player-hobby" />
+      <input
+        type="text"
+        placeholder="Your Hobby"
+        class="player-hobby"
+        required
+      />
 
       <div class="button">
         <button type="submit" id="input-player-hobby">submit</button>
       </div>
-    </div>
+    </form>
 
     <div class="introduction">
       <div class="image-wrapper">
         <img src="assets/shadow-man.png" alt="" />
       </div>
-      
+
       <div class="dialog-box">
         <h4 class="name">Unknown</h4>
         <p id="speech" class="speech"></p>
@@ -46,9 +56,8 @@
           <button id="nextBtn">Next</button>
         </div>
       </div>
-
     </div>
-    <form class="change-name-con">
+    <!-- <form class="change-name-con">
       <h4 class="header">Change your Name</h4>
 
       <input type="text" placeholder="Player Name" class="player-name" />
@@ -57,18 +66,18 @@
         <button type="submit" id="add-name">Change Name</button>
         <button id="cancel-name">cancel</button>
       </div>
-    </form>
+    </form> -->
 
-    <div class="add-daily-con">
+    <form class="add-daily-con">
       <h4 class="header">Add your quest</h4>
 
       <input type="text" placeholder="Daily Task" id="inputDailyTask" />
 
       <div class="button">
-        <button id="add-daily-task">Add Task</button>
+        <button id="add-daily-task" type="submit">Add Task</button>
         <button id="cancel-daily-quest">cancel</button>
       </div>
-    </div>
+    </form>
 
     <div class="add-quests-con">
       <h4 class="header">Add your quest</h4>
@@ -87,19 +96,29 @@
       <button id="cancel-quests">cancel</button>
     </div>
 
+    <form class="restart-con">
+      <h5 class="header">Apakah kamu yakin ingin mengulang semua usahamu?</h5>
+
+      <div class="button">
+        <button type="submit" id="restart-button">Yakin</button>
+        <button id="cancel-restart">Cancel</button>
+      </div>
+    </form>
+
     <div class="container">
       <div class="navbar">
         <div class="nav-item active" onclick="showMenu('daily-tasks', this)">
           <img src="assets/Task-List-Clock--Streamline-Nova.png" alt="" />
         </div>
-        <div class="nav-item" onclick="showMenu('inventory', this)">
-          <img src="assets/Backpack--Streamline-Plump.png" alt="" />
-        </div>
+
         <div class="nav-item" onclick="showMenu('quests', this)">
           <img src="assets/Task-List-Lock--Streamline-Nova.png" alt="" />
         </div>
         <div class="nav-item" onclick="showMenu('status', this)">
           <img src="assets/User-Profile-Circle--Streamline-Nova.png" alt="" />
+        </div>
+        <div class="nav-item" onclick="showMenu('setting', this)">
+          <img src="assets/Cog-Setting--Streamline-Micro.png" alt="" />
         </div>
       </div>
 
@@ -121,8 +140,11 @@
         <section class="daily-tasks show" id="daily-tasks">
           <div class="header-content">
             <h1 class="header">Daily Tasks</h1>
+            <h5 class="description">
+              Geser ke kiri untuk membuat <br> misi harianmu
+            </h5>
             <div class="streak-box">
-              <span class="streak-skor">0</span>
+              <span class="streak-skor" id="streakCount">0</span>
               <h5 class="streak">Streak</h5>
             </div>
           </div>
@@ -133,23 +155,23 @@
                 <div class="tasks-item">
                   <div class="task-item">
                     <input type="checkbox" class="checkbox" />
-                    <h4 class="task-content">Read A book</h4>
+                    <h4 class="task-content">Melatih Otak</h4>
                   </div>
                   <div class="task-item">
                     <input type="checkbox" class="checkbox" />
-                    <h4 class="task-content">Calm Your Mind</h4>
+                    <h4 class="task-content">Meditasi</h4>
                   </div>
                   <div class="task-item">
                     <input type="checkbox" class="checkbox" />
-                    <h4 class="task-content">Greet Someone</h4>
+                    <h4 class="task-content">Latihan Fisik</h4>
                   </div>
                 </div>
                 <div class="description-item">
-                  <h4 class="time">Timer: <span id="time">06:10:34</span></h4>
+                  <h4 class="time">Timer: <span class="timer"></span></h4>
 
                   <h4 class="warning">
-                    failure to complete the daily quest will result in an
-                    appropriate <span>penalty</span>
+                    Quest harian yang gagal <br />
+                    diselesaikan akan mendapatkan <span>hukuman</span>
                   </h4>
                 </div>
               </div>
@@ -165,10 +187,10 @@
                 <div class="tasks-item"></div>
 
                 <div class="description-item">
-                  <h4 class="time">Timer: <span id="time">06:10:34</span></h4>
+                  <h4 class="time">Timer: <span class="timer"></span></h4>
 
                   <h4 class="warning">
-                    add new quests using the <br />plus sign above
+                    Klik tanda plus di atas untuk menambahkan quest baru
                   </h4>
                 </div>
               </div>
@@ -176,14 +198,21 @@
           </div>
         </section>
 
-        <section class="inventory" id="inventory"></section>
+        <section class="setting" id="setting">
+          <div class="header-content">
+            <h1 class="header">Settings</h1>
+          </div>
+
+          <div class="setting-box">
+            <button id="restart">Restart</button>
+          </div>
+        </section>
 
         <section class="quests" id="quests">
           <div class="header-content">
             <h1 class="header">Quests</h1>
             <h5 class="description">
-              Complete quests to increase <br />
-              your stats
+              Selesaikan quest untuk meningkatkan kemampuanmu
             </h5>
             <div class="achievement">
               <i class="fa-solid fa-trophy trophy"></i>
@@ -252,7 +281,8 @@
                 <h1 class="quests-name">Strenght Quests</h1>
 
                 <p class="description">
-                  Strenght Quests for player to increase strenght stats
+                  Latih kekuatanmu dan tingkatkan kemampuan fisik melalui quest
+                  ini!
                 </p>
               </div>
 
@@ -387,7 +417,8 @@
                 <h1 class="quests-name">Intelligence Quests</h1>
 
                 <p class="description">
-                  Intelligence Quests for player to increase Intelligence stats
+                  Latih kecerdasanmu dan tingkatkan kemampuan berpikirmu melalui
+                  quest ini!
                 </p>
               </div>
 
@@ -523,7 +554,8 @@
                 <h1 class="quests-name">Attitude Quests</h1>
 
                 <p class="description">
-                  Attitude Quests for player to increase Attitude stats
+                  Uji keteguhan hatimu dan kembangkan kualitas pribadimu melalui
+                  quest ini!
                 </p>
               </div>
 
@@ -654,7 +686,8 @@
                 <h1 class="quests-name">Social Quests</h1>
 
                 <p class="description">
-                  Social Quests for player to increase Social stats
+                  Latih interaksimu dan tingkatkan kemampuan bersosialisasi
+                  melalui quest ini!
                 </p>
               </div>
 
@@ -784,7 +817,9 @@
               <div class="content">
                 <h1 class="quests-name">personal quests</h1>
 
-                <p class="description">quests based on players own will</p>
+                <p class="description">
+                  Quest yang bisa kamu pilih sendiri sesuai keinginanmu
+                </p>
                 <i class="fa-solid fa-plus" id="addQuests"></i>
               </div>
 
@@ -796,7 +831,7 @@
         <section class="status" id="status">
           <div class="header-content">
             <h1 class="header">Status</h1>
-            <h5 class="description">Your stats and Rank</h5>
+            <h5 class="description">Statistik dan Peringkatmu</h5>
 
             <div class="rank">
               <div class="rank-box">
@@ -808,12 +843,19 @@
           <div class="status-box">
             <div class="profil-status">
               <div class="image-wrapper">
-                <img src="assets/Bluepanda.jpeg" alt="" />
+                <label for="photoInput">
+                  <img
+                    src="assets/default-image.jpg"
+                    alt=""
+                    id="player-photo"
+                  />
+                </label>
+                <input type="file" accept="image/*" id="photoInput" />
               </div>
               <div class="profil">
-                <h5 class="name">Name: <span class="name-player"></span></h5>
-                <h5 class="class">Favorite: <span id="favorite"></span></h5>
-                <h5 class="title">Title: <span id="title">Beginner</span></h5>
+                <h5 class="name">Nama: <span class="name-player"></span></h5>
+                <h5 class="class">Kesukaan: <span id="favorite"></span></h5>
+                <h5 class="title">Level: <span id="title">Beginner</span></h5>
               </div>
 
               <div class="level">

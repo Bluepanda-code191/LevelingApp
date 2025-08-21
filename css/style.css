@@ -30,6 +30,14 @@ body {
   --fs-h5: 12px;
 }
 
+@keyframes masuk {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 button {
   cursor: pointer;
 }
@@ -289,8 +297,52 @@ section.show {
   text-transform: capitalize;
 }
 
+.restart-con {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: #0a1524;
+  z-index: 99;
+  color: #fff;
+  display: none;
+  opacity: 1;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  width: 320px;
+  height: 150px;
+  border: 2px solid var(--color-border-skill);
+}
+.restart-con .header {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.restart-con .button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+.restart-con .button button {
+  width: 50%;
+  font-size: 15px;
+  background-color: transparent;
+  border: 2px solid var(--color-border-skill);
+  color: #fff;
+  padding: 8px 10px;
+  text-transform: capitalize;
+}
+.restart-con .button button:last-child {
+  background-color: var(--color-accent);
+  color: #fff;
+  border: 2px solid var(--color-accent);
+}
+
 .introduction {
-  width: 380px;
+  animation: masuk 0.8s ease;
+  width: 370px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -348,12 +400,14 @@ section.show {
 }
 
 .container {
+  animation: masuk 0.6s ease;
   display: none;
   overflow-y: scroll;
   scrollbar-width: none;
   position: relative;
   width: 380px;
   border: 1px solid;
+  transition: all 0.2s ease;
 }
 .container.focus {
   opacity: 0.6;
@@ -456,6 +510,7 @@ section.show {
 }
 .container .daily-tasks .header-content .header {
   font-weight: 500;
+  margin-bottom: 5px;
 }
 .container .daily-tasks .streak-box {
   position: absolute;
@@ -492,7 +547,7 @@ section.show {
 }
 .container .daily-tasks .tasks-box {
   display: flex;
-  margin-top: 40px;
+  margin-top: 25px;
   text-align: center;
   width: 100%;
   gap: 60px;
@@ -623,6 +678,62 @@ section.show {
 .container .daily-tasks .tasks-box .tasks-content .warning span {
   color: red;
   text-shadow: 0 0 1px #f93939;
+}
+.container .setting {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.container .setting .header-content {
+  width: 100%;
+  color: var(--color-text-secondary);
+}
+.container .setting .header-content .header {
+  text-align: center;
+  position: relative;
+  font-weight: 500;
+  padding: 5px 0 7px;
+}
+.container .setting .header-content .header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  transform: translateX(50%);
+  width: 60%;
+  height: 2px;
+  background-color: var(--color-box-border);
+}
+.container .setting .header-content .header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+  width: 60%;
+  height: 2px;
+  background-color: var(--color-box-border);
+}
+.container .setting .setting-box {
+  margin-top: 40px;
+  width: 50%;
+}
+.container .setting .setting-box button {
+  width: 100%;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+.container .setting .setting-box button:hover {
+  border: 2px solid var(--color-accent);
+  background-color: #081b29;
+  color: var(--color-accent);
 }
 .container .quests {
   width: 100%;
@@ -894,6 +1005,9 @@ section.show {
   background-color: rgba(204, 204, 204, 0.8);
   box-shadow: 0 0 20px var(--color-accent);
   overflow: hidden;
+}
+.container .status .status-box .profil-status .image-wrapper input {
+  display: none;
 }
 .container .status .status-box .profil-status .image-wrapper img {
   width: 100%;
