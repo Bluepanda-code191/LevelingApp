@@ -402,10 +402,14 @@ section.show {
 .container {
   animation: masuk 0.6s ease;
   display: none;
+  justify-content: space-between;
+  flex-direction: column;
   overflow-y: scroll;
   scrollbar-width: none;
   position: relative;
-  width: 380px;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 380px;
   border: 1px solid;
   transition: all 0.2s ease;
 }
@@ -440,7 +444,7 @@ section.show {
   filter: invert(100%) brightness(200%);
 }
 .container .info {
-  position: sticky;
+  position: absolute;
   top: 0;
   width: 100%;
   padding: 10px 20px 20px;
@@ -494,11 +498,15 @@ section.show {
 }
 .container .main {
   position: absolute;
-  margin-top: 26px;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
   padding: 0 10px;
   width: 100%;
+  margin: auto;
 }
 .container .daily-tasks {
+  height: 100%;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -681,6 +689,7 @@ section.show {
 }
 .container .setting {
   width: 100%;
+  height: 420px;
   flex-direction: column;
   align-items: center;
 }
@@ -779,6 +788,7 @@ section.show {
   font-size: 22px;
 }
 .container .quests .quests-box {
+  height: 100%;
   width: 100%;
   margin-top: 30px;
 }
@@ -985,6 +995,7 @@ section.show {
   font-size: 40px;
 }
 .container .status .status-box {
+  height: 100%;
   margin-top: 30px;
   width: 100%;
   display: flex;
@@ -999,8 +1010,10 @@ section.show {
   align-items: center;
 }
 .container .status .status-box .profil-status .image-wrapper {
-  width: 100px;
-  height: 100px;
+  margin-right: 10px;
+  width: 80px;
+  margin-right: 10px;
+  height: 80px;
   border-radius: 50%;
   background-color: rgba(204, 204, 204, 0.8);
   box-shadow: 0 0 20px var(--color-accent);
@@ -1022,6 +1035,7 @@ section.show {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  max-width: 180px;
 }
 .container .status .status-box .profil-status .profil span {
   text-transform: capitalize;

@@ -21,11 +21,12 @@
         type="text"
         placeholder="Player Name"
         class="player-name"
-        required
+        maxlength="8"
+        id="noSpace"
       />
 
       <div class="button">
-        <button type="submit" id="input-player-name">submit</button>
+        <button type="submit" id="input-player-name">Submit</button>
       </div>
     </form>
 
@@ -40,7 +41,7 @@
       />
 
       <div class="button">
-        <button type="submit" id="input-player-hobby">submit</button>
+        <button type="submit" id="input-player-hobby">Submit</button>
       </div>
     </form>
 
@@ -75,7 +76,7 @@
 
       <div class="button">
         <button id="add-daily-task" type="submit">Add Task</button>
-        <button id="cancel-daily-quest">cancel</button>
+        <button id="cancel-daily-quest" type="button">Cancel</button>
       </div>
     </form>
 
@@ -90,18 +91,18 @@
           class="task-description"
         />
         <div class="button">
-          <button type="submit" id="add-task">add task</button>
+          <button type="submit" id="add-task">Add task</button>
         </div>
       </form>
-      <button id="cancel-quests">cancel</button>
+      <button id="cancel-quests" type="button">Cancel</button>
     </div>
 
     <form class="restart-con">
       <h5 class="header">Apakah kamu yakin ingin mengulang semua usahamu?</h5>
 
       <div class="button">
-        <button type="submit" id="restart-button">Yakin</button>
-        <button id="cancel-restart">Cancel</button>
+        <button type="submit" id="restart-button">Lanjutkan</button>
+        <button id="cancel-restart" type="button">Batal</button>
       </div>
     </form>
 
@@ -141,7 +142,8 @@
           <div class="header-content">
             <h1 class="header">Daily Tasks</h1>
             <h5 class="description">
-              Geser ke kiri untuk membuat <br> misi harianmu
+              Geser ke kiri untuk membuat <br />
+              misi harianmu
             </h5>
             <div class="streak-box">
               <span class="streak-skor" id="streakCount">0</span>

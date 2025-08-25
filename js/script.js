@@ -1,3 +1,4 @@
+// LOCAL STORAGE
 function saveData() {
   const checkboxes = Array.from(document.querySelectorAll(".checkbox")).map(
     (cb) => cb.checked
@@ -39,7 +40,6 @@ function saveData() {
     totalQuests: document.getElementById("totalQuests").textContent,
     introDone: introDone,
   };
-
   localStorage.setItem("playerData", JSON.stringify(data));
 }
 
@@ -52,12 +52,10 @@ function loadData() {
   streak = saved.streak || 0;
   playerName = saved.playerName || "";
   playerHobby = saved.playerHobby || "";
-
   const namePlayer = document.querySelectorAll(".name-player");
   namePlayer.forEach((el) => (el.textContent = playerName));
   const favorite = document.querySelector("#favorite");
   if (favorite) favorite.textContent = playerHobby;
-
   document.querySelector("#streakCount").textContent = streak;
   document.querySelectorAll("#level").forEach((lv) => {
     lv.textContent = level;
@@ -65,8 +63,8 @@ function loadData() {
 
   if (saved.introDone) {
     introDone = true;
-    introContainer.style.display = "none"; // langsung sembunyiin intro
-    container.style.display = "block"; // langsung tampil container utama
+    introContainer.style.display = "none";
+    container.style.display = "block";
   } else {
     introContainer.style.display = "flex";
     container.style.display = "none";
@@ -74,7 +72,7 @@ function loadData() {
 
   if (saved.personalQuests) {
     const conPersonal = document.querySelector(".main-personal .main-content");
-    conPersonal.innerHTML = ""; // clear dulu
+    conPersonal.innerHTML = "";
 
     saved.personalQuests.forEach((quest) => {
       const newItem = document.createElement("div");
@@ -86,8 +84,6 @@ function loadData() {
         </div>
         <button class="done">Done</button>
       `;
-
-      // kasih event ke tombol Done biar tetap jalan
       newItem.querySelector(".done").addEventListener("click", () => {
         newItem.remove();
         updateTotalQuests(-1);
@@ -96,11 +92,9 @@ function loadData() {
         updateXPBar();
         saveData();
       });
-
       conPersonal.appendChild(newItem);
     });
   }
-
   if (saved.totalQuests) {
     document.getElementById("totalQuests").textContent = saved.totalQuests;
   }
@@ -125,7 +119,7 @@ function loadData() {
 
   if (saved.dailyPersonalTasks) {
     const tasksItem = document.querySelector("#personalDailyTask .tasks-item");
-    tasksItem.innerHTML = ""; // clear dulu
+    tasksItem.innerHTML = "";
 
     saved.dailyPersonalTasks.forEach((task) => {
       const newItem = document.createElement("div");
@@ -135,7 +129,6 @@ function loadData() {
       <h4 class="task-content">${task.content}</h4>
     `;
 
-      // 🔥 tambahin event listener lagi biar XP jalan
       const check = newItem.querySelector(".checkbox");
       check.addEventListener("change", () => {
         if (check.checked) {
@@ -156,6 +149,7 @@ function loadData() {
   updateXPBar();
   applyLevelTheme(level);
 }
+// LOCAL STORAGE
 
 function updateSkillBar(barId) {
   const data = skillData[barId];
@@ -166,11 +160,11 @@ function updateSkillBar(barId) {
   xpBarSkill.style.width = `${Math.min((xpSkill / neededXP) * 100, 100)}%`;
   Array.from(levelEls).forEach((el) => (el.textContent = levelSkill));
 }
-let introDone = false;
 
+// INTRO
+let introDone = false;
 const introContainer = document.querySelector(".introduction");
 const container = document.querySelector(".container");
-
 const dialogues = [
   {
     text: "Hai Player... selamat datang di dunia leveling.",
@@ -261,7 +255,6 @@ nextBtn.addEventListener("click", () => {
     if (hobbyInput.value.trim() === "") {
       return;
     }
-
     return;
   }
 
@@ -282,13 +275,17 @@ nextBtn.addEventListener("click", () => {
   if (currentIndex === dialogues.length - 1) {
     introContainer.style.display = "none";
     container.style.display = "block";
-    introDone = true; // 🔥 tandai intro sudah selesai
+    introDone = true;
     saveData();
     return;
   }
-
   currentIndex = Math.min(currentIndex + 1, dialogues.length - 1);
   loadDialogue(currentIndex);
+});
+
+const inputRule = document.getElementById("noSpace");
+inputRule.addEventListener("input", () => {
+  inputRule.value = inputRule.value.replace(/\s/g, "");
 });
 
 nameSubmitBtn.addEventListener("click", (e) => {
@@ -335,7 +332,9 @@ window.dataLayer = window.dataLayer || [];
 function gtag() {
   dataLayer.push(arguments);
 }
+// INTRO
 
+// MENU BUTTON
 function showMenu(menuId, element) {
   document
     .querySelectorAll("section")
@@ -346,12 +345,14 @@ function showMenu(menuId, element) {
     .forEach((btn) => btn.classList.remove("active"));
   element.classList.add("active");
 }
+// MENU BUTTON
 
+// RESTART BUTTON
 const restartBtn = document.getElementById("restart");
 const restartCon = document.querySelector(".restart-con");
 const cancelRestart = document.getElementById("cancel-restart");
 
-restartBtn.addEventListener("click", () => {
+restartBtn.addEventListener("click", (e) => {
   cancelRestart.addEventListener("click", () => {
     restartCon.style.display = "none";
     container.classList.remove("focus");
@@ -366,7 +367,9 @@ const restartButton = document.getElementById("restart-button");
 restartButton.addEventListener("click", () => {
   localStorage.removeItem("playerData");
 });
+// RESTART BUTTON
 
+// ADD DAILY QUEST
 const addDailyQuest = document.getElementById("addDailyQuests");
 const addDailyCon = document.querySelector(".add-daily-con");
 const cancelDailyQuest = document.getElementById("cancel-daily-quest");
@@ -402,7 +405,6 @@ addDailyTask.addEventListener("click", (e) => {
   <input type="checkbox" class="checkbox" />
   <h4 class="task-content">${inputDailyTask}</h4>
   `;
-
   newItem.querySelectorAll(".checkbox").forEach((check) => {
     check.addEventListener("change", () => {
       if (check.checked) {
@@ -425,6 +427,7 @@ addDailyTask.addEventListener("click", (e) => {
   addDailyCon.style.display = "none";
   saveData();
 });
+// ADD DAILY QUEST
 
 // const changeName = document.getElementById("change-name");
 // const cancelName = document.getElementById("cancel-name");
@@ -462,7 +465,7 @@ addDailyTask.addEventListener("click", (e) => {
 //   container.classList.remove("focus");
 // });
 
-const checkboxList = document.querySelectorAll(".checkbox");
+// XP & LEVEL
 let xp = 0;
 let level = 1;
 
@@ -495,7 +498,10 @@ function updateLevel() {
     levelValue.textContent = level;
   });
 }
+// XP & LEVEL
 
+// CHECKBOX FUNCTION
+const checkboxList = document.querySelectorAll(".checkbox");
 checkboxList.forEach((checkbox) => {
   checkbox.addEventListener("change", () => {
     if (checkbox.checked) {
@@ -509,7 +515,9 @@ checkboxList.forEach((checkbox) => {
     saveData();
   });
 });
+// CHECKBOX FUNCTION
 
+// QUEST SKILL BUTTON
 const questList = document.querySelectorAll(".skill-item");
 
 questList.forEach((quest) => {
@@ -562,20 +570,19 @@ questList.forEach((quest) => {
       mainatt.style.display = "none";
       mainsoc.style.display = "none";
       mainpersonal.style.display = "none";
-
       navbar.style.display = "flex";
       headerContent.style.display = "block";
       questsBox.style.display = "block";
-
       backBtn.classList.add("fa-fire-flame-curved", "fire");
       backBtn.classList.remove("fa-rotate-left", "return");
     });
   });
 });
+// QUEST SKILL BUTTON
 
+// ADD PERSONAL QUEST
 const addQuests = document.getElementById("addQuests");
 const cancelQuests = document.getElementById("cancel-quests");
-
 const addTask = document.getElementById("add-task");
 
 addQuests.addEventListener("click", () => {
@@ -609,7 +616,6 @@ addTask.addEventListener("click", (e) => {
   }
 
   const conPersonal = document.querySelector(".main-personal .main-content");
-
   const newItem = document.createElement("div");
   newItem.classList.add("item");
   newItem.innerHTML = `<div class="text">
@@ -630,12 +636,10 @@ addTask.addEventListener("click", (e) => {
   });
 
   conPersonal.appendChild(newItem);
-
   updateTotalQuests(1);
 
   document.querySelector(".task-title").value = "";
   document.querySelector(".task-description").value = "";
-
   document.querySelector(".add-quests-con").style.display = "none";
   container.classList.remove("focus");
 
@@ -643,7 +647,9 @@ addTask.addEventListener("click", (e) => {
   console.log(totalTasks);
   saveData();
 });
+// ADD PERSONAL QUEST
 
+// DONE BUTTON
 const doneBtn = document.querySelectorAll(".done");
 
 doneBtn.forEach((btn) => {
@@ -658,7 +664,9 @@ doneBtn.forEach((btn) => {
     saveData();
   });
 });
+// DONE BUTTON
 
+// SKILL SYSTEM
 const skillData = {};
 
 function setupSkillSystem(buttonSelector, targets) {
@@ -734,7 +742,9 @@ setupSkillSystem(".main-soc .done", [
   { barId: "xpBarSoc", levelId: "poinSoc" },
   { barId: "xpBarCha", levelId: "poinCha" },
 ]);
+// SKILL SYSTEM
 
+// LEVEL THEME
 function applyLevelTheme(level) {
   const titleRank = document.getElementById("title");
   const classRank = document.querySelector(".rank-name");
@@ -812,7 +822,9 @@ function applyLevelTheme(level) {
     return;
   }
 }
+// LEVEL THEME
 
+// PHOTO INPUT
 const photoInput = document.getElementById("photoInput");
 const playerPhoto = document.getElementById("player-photo");
 
@@ -827,7 +839,9 @@ photoInput.addEventListener("change", function () {
     reader.readAsDataURL(file);
   }
 });
+// PHOTO INPUT
 
+// TIMER
 function getResetTime() {
   const now = new Date();
   const tomorrow = new Date(now);
@@ -854,10 +868,11 @@ function updateTimer() {
     });
   }
 }
+// TIMER
 
+// STREAK
 let streak = 0;
 
-// cek waktu reset harian
 function checkDailyCompletion() {
   const checkboxes = document.querySelectorAll(".checkbox");
   const allCompleted = Array.from(checkboxes).every((cb) => cb.checked);
@@ -865,7 +880,7 @@ function checkDailyCompletion() {
   if (allCompleted) {
     streak++;
   } else {
-    streak = 0; // reset kalau ada yang gagal
+    streak = 0;
   }
 
   document.getElementById("streakCount").textContent = streak;
@@ -877,8 +892,8 @@ function resetTasks() {
   const checkboxes = document.querySelectorAll(".checkbox");
   checkboxes.forEach((cb) => (cb.checked = false));
 }
-
 setInterval(updateTimer, 1000);
+// STREAK
 
 loadData();
 updateXPBar();
