@@ -112,14 +112,15 @@
           <img src="assets/Task-List-Clock--Streamline-Nova.png" alt="" />
         </div>
 
+        <div class="nav-item" onclick="showMenu('inventory', this)">
+          <img src="assets/Backpack--Streamline-Plump.png" alt="" />
+        </div>
+
         <div class="nav-item" onclick="showMenu('quests', this)">
           <img src="assets/Task-List-Lock--Streamline-Nova.png" alt="" />
         </div>
         <div class="nav-item" onclick="showMenu('status', this)">
           <img src="assets/User-Profile-Circle--Streamline-Nova.png" alt="" />
-        </div>
-        <div class="nav-item" onclick="showMenu('setting', this)">
-          <img src="assets/Cog-Setting--Streamline-Micro.png" alt="" />
         </div>
       </div>
 
@@ -133,7 +134,11 @@
 
         <div class="profil">
           <h5 class="name name-player" id="change-name">Yuu</h5>
-          <i class="fa-solid fa-fire-flame-curved fire" id="backBtn"></i>
+          <i
+            class="fa-solid fa-fire-flame-curved fire gear settingIcon"
+            id="backBtn "
+            onclick="showMenu('setting', this)"
+          ></i>
         </div>
       </div>
 
@@ -173,7 +178,8 @@
 
                   <h4 class="warning">
                     Quest harian yang gagal <br />
-                    diselesaikan akan mendapatkan <span>hukuman</span>
+                    diselesaikan akan mendapatkan
+                    <br /><span>hukuman</span>
                   </h4>
                 </div>
               </div>
@@ -192,7 +198,8 @@
                   <h4 class="time">Timer: <span class="timer"></span></h4>
 
                   <h4 class="warning">
-                    Klik tanda plus di atas untuk menambahkan quest baru
+                    Klik tanda <span class="plus">plus</span> di atas untuk
+                    menambahkan quest baru
                   </h4>
                 </div>
               </div>
@@ -207,6 +214,19 @@
 
           <div class="setting-box">
             <button id="restart">Restart</button>
+          </div>
+        </section>
+
+        <section id="inventory" class="inventory">
+          <div class="header-content">
+            <h1 class="header">Inventory</h1>
+            <h5 class="description">
+              achievement and items unlocked will be displayed here.
+            </h5>
+          </div>
+
+          <div class="inventory-box">
+            <h5 class="description">No Items available yet</h5>
           </div>
         </section>
 

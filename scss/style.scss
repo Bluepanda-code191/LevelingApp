@@ -432,9 +432,11 @@ section {
   }
 
   .navbar {
+    background-color: #081b29;
     border-top: 2px solid #cccccc70;
     width: 100%;
     padding: 8px 0 0;
+    z-index: 999;
     position: absolute;
     bottom: 0;
     justify-content: space-around;
@@ -507,36 +509,50 @@ section {
       }
 
       .fire,
+      .gear,
       .return {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        cursor: pointer;
         font-size: 30px;
         color: var(--color-accent);
         filter: drop-shadow(0 0 1px --color-accent);
       }
 
+      .fa-gear {
+        font-size: 30px;
+      }
+
       .return {
         font-size: 25px;
-        cursor: pointer;
       }
     }
   }
 
   .main {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
     position: absolute;
     bottom: 50%;
     right: 50%;
     transform: translate(50%, 50%);
     padding: 0 10px;
     width: 100%;
+    height: calc(100% - 70px - 65px);
     margin: auto;
   }
 
   .daily-tasks {
+    position: relative;
     height: 100%;
     flex-direction: column;
     align-items: center;
     width: 100%;
 
     .header-content {
+      margin-top: 5px;
       position: relative;
       width: 100%;
       color: var(--color-text-secondary);
@@ -563,10 +579,11 @@ section {
     }
 
     .tasks-wrapper {
-      width: 80%;
+      width: 90%;
       display: flex;
       justify-content: center;
       overflow-x: auto;
+      height: 80%;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
     }
@@ -587,6 +604,7 @@ section {
         width: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
         gap: 30px;
         text-transform: uppercase;
 
@@ -627,7 +645,8 @@ section {
         .header {
           position: relative;
           padding: 5px 0 6px;
-          font-size: 15px;
+          font-size: 18px;
+          // margin-top: -20px;
           &::before {
             content: "";
             position: absolute;
@@ -657,7 +676,7 @@ section {
           gap: 15px;
           height: 150px;
           justify-content: center;
-          width: 150px;
+          width: 180px;
           margin: 0 auto;
           overflow: hidden;
           overflow-y: auto;
@@ -672,7 +691,8 @@ section {
 
           .task-content {
             text-align: start;
-            max-width: 150px;
+            font-size: 14px;
+            max-width: 300px;
           }
 
           input {
@@ -716,23 +736,66 @@ section {
           gap: 10px;
         }
 
+        .time {
+          font-size: 14px;
+        }
+
         .warning {
+          font-size: 14px;
           span {
             color: red;
             text-shadow: 0 0 1px #f93939;
+          }
+
+          .plus {
+            color: var(--color-accent);
           }
         }
       }
     }
   }
 
-  .setting {
+  .inventory {
+    position: relative;
     width: 100%;
-    height: 420px;
+    height: 100%;
+    flex-direction: column;
+
+    .header-content {
+      text-transform: capitalize;
+
+      position: relative;
+      width: 100%;
+      color: var(--color-text-secondary);
+      .header {
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+    }
+
+    .description {
+      font-size: var(--fs-h5);
+    }
+
+    .inventory-box {
+      text-transform: capitalize;
+      height: 80%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+  }
+
+  .setting {
+    position: relative;
+    width: 100%;
+    height: 100%;
     flex-direction: column;
     align-items: center;
 
     .header-content {
+      margin-top: 20px;
       width: 100%;
       color: var(--color-text-secondary);
 
@@ -767,6 +830,7 @@ section {
     }
 
     .setting-box {
+      height: 80%;
       margin-top: 40px;
       width: 50%;
 
@@ -792,12 +856,15 @@ section {
   }
 
   .quests {
+    position: relative;
     width: 100%;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
     .header-content {
+      margin-top: 5px;
       position: relative;
       width: 100%;
       color: var(--color-text-secondary);
@@ -828,11 +895,11 @@ section {
     }
 
     .quests-box {
-      height: 100%;
+      height: 80%;
       width: 100%;
-      margin-top: 30px;
+      margin-top: 25px;
       .quests-skill {
-        gap: 15px;
+        gap: 10px;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         width: 100%;
@@ -896,7 +963,7 @@ section {
       .personal-quests {
         display: flex;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 15px;
         padding: 15px;
         width: 100%;
         border: 2px solid var(--color-box-border);
@@ -926,6 +993,7 @@ section {
     .main-att,
     .main-soc,
     .main-personal {
+      height: 80%;
       display: none;
       flex-direction: column;
     }
@@ -933,6 +1001,7 @@ section {
     .main-skill {
       display: flex;
       width: 100%;
+      height: 100%;
 
       .content {
         max-width: 300px;
@@ -1015,6 +1084,9 @@ section {
   }
 
   .status {
+    height: 100%;
+    width: 100%;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -1054,12 +1126,12 @@ section {
     }
 
     .status-box {
-      height: 100%;
+      height: 80%;
       margin-top: 30px;
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 15px;
 
       .profil-status {
         display: flex;
@@ -1146,7 +1218,7 @@ section {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        gap: 8px;
+        gap: 15px;
         .skill-item {
           position: relative;
           width: 100%;

@@ -347,6 +347,17 @@ function showMenu(menuId, element) {
 }
 // MENU BUTTON
 
+const settingIcon = document.querySelector(".settingIcon");
+settingIcon.addEventListener("mouseenter", () => {
+  settingIcon.classList.remove("fa-fire-flame-curved");
+  settingIcon.classList.add("fa-gear");
+});
+
+settingIcon.addEventListener("mouseleave", () => {
+  settingIcon.classList.remove("fa-gear");
+  settingIcon.classList.add("fa-fire-flame-curved");
+});
+
 // RESTART BUTTON
 const restartBtn = document.getElementById("restart");
 const restartCon = document.querySelector(".restart-con");

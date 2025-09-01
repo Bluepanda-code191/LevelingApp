@@ -420,9 +420,11 @@ section.show {
   display: none;
 }
 .container .navbar {
+  background-color: #081b29;
   border-top: 2px solid rgba(204, 204, 204, 0.4392156863);
   width: 100%;
   padding: 8px 0 0;
+  z-index: 999;
   position: absolute;
   bottom: 0;
   justify-content: space-around;
@@ -487,31 +489,44 @@ section.show {
   text-transform: capitalize;
 }
 .container .info .profil .fire,
+.container .info .profil .gear,
 .container .info .profil .return {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  cursor: pointer;
   font-size: 30px;
   color: var(--color-accent);
   filter: drop-shadow(0 0 1px --color-accent);
 }
+.container .info .profil .fa-gear {
+  font-size: 30px;
+}
 .container .info .profil .return {
   font-size: 25px;
-  cursor: pointer;
 }
 .container .main {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
   position: absolute;
   bottom: 50%;
   right: 50%;
   transform: translate(50%, 50%);
   padding: 0 10px;
   width: 100%;
+  height: calc(100% - 70px - 65px);
   margin: auto;
 }
 .container .daily-tasks {
+  position: relative;
   height: 100%;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 .container .daily-tasks .header-content {
+  margin-top: 5px;
   position: relative;
   width: 100%;
   color: var(--color-text-secondary);
@@ -546,10 +561,11 @@ section.show {
   border: 2px solid var(--color-box-border);
 }
 .container .daily-tasks .tasks-wrapper {
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: center;
   overflow-x: auto;
+  height: 80%;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
@@ -569,6 +585,7 @@ section.show {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   gap: 30px;
   text-transform: uppercase;
 }
@@ -602,7 +619,7 @@ section.show {
 .container .daily-tasks .tasks-box .tasks-content .header {
   position: relative;
   padding: 5px 0 6px;
-  font-size: 15px;
+  font-size: 18px;
 }
 .container .daily-tasks .tasks-box .tasks-content .header::before {
   content: "";
@@ -630,7 +647,7 @@ section.show {
   gap: 15px;
   height: 150px;
   justify-content: center;
-  width: 150px;
+  width: 180px;
   margin: 0 auto;
   overflow: hidden;
   overflow-y: auto;
@@ -644,7 +661,8 @@ section.show {
 }
 .container .daily-tasks .tasks-box .tasks-content .task-item .task-content {
   text-align: start;
-  max-width: 150px;
+  font-size: 14px;
+  max-width: 300px;
 }
 .container .daily-tasks .tasks-box .tasks-content .task-item input {
   position: relative;
@@ -683,17 +701,55 @@ section.show {
   flex-direction: column;
   gap: 10px;
 }
+.container .daily-tasks .tasks-box .tasks-content .time {
+  font-size: 14px;
+}
+.container .daily-tasks .tasks-box .tasks-content .warning {
+  font-size: 14px;
+}
 .container .daily-tasks .tasks-box .tasks-content .warning span {
   color: red;
   text-shadow: 0 0 1px #f93939;
 }
-.container .setting {
+.container .daily-tasks .tasks-box .tasks-content .warning .plus {
+  color: var(--color-accent);
+}
+.container .inventory {
+  position: relative;
   width: 100%;
-  height: 420px;
+  height: 100%;
+  flex-direction: column;
+}
+.container .inventory .header-content {
+  text-transform: capitalize;
+  position: relative;
+  width: 100%;
+  color: var(--color-text-secondary);
+}
+.container .inventory .header-content .header {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.container .inventory .description {
+  font-size: var(--fs-h5);
+}
+.container .inventory .inventory-box {
+  text-transform: capitalize;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.container .setting {
+  position: relative;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
 }
 .container .setting .header-content {
+  margin-top: 20px;
   width: 100%;
   color: var(--color-text-secondary);
 }
@@ -724,6 +780,7 @@ section.show {
   background-color: var(--color-box-border);
 }
 .container .setting .setting-box {
+  height: 80%;
   margin-top: 40px;
   width: 50%;
 }
@@ -745,13 +802,16 @@ section.show {
   color: var(--color-accent);
 }
 .container .quests {
+  position: relative;
   width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-transform: capitalize;
 }
 .container .quests .header-content {
+  margin-top: 5px;
   position: relative;
   width: 100%;
   color: var(--color-text-secondary);
@@ -788,12 +848,12 @@ section.show {
   font-size: 22px;
 }
 .container .quests .quests-box {
-  height: 100%;
+  height: 80%;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 .container .quests .quests-box .quests-skill {
-  gap: 15px;
+  gap: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
@@ -847,7 +907,7 @@ section.show {
 .container .quests .quests-box .personal-quests {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 15px;
   width: 100%;
   border: 2px solid var(--color-box-border);
@@ -872,12 +932,14 @@ section.show {
 .container .quests .main-att,
 .container .quests .main-soc,
 .container .quests .main-personal {
+  height: 80%;
   display: none;
   flex-direction: column;
 }
 .container .quests .main-skill {
   display: flex;
   width: 100%;
+  height: 100%;
 }
 .container .quests .main-skill .content {
   max-width: 300px;
@@ -951,6 +1013,9 @@ section.show {
   background-color: #081b29;
 }
 .container .status {
+  height: 100%;
+  width: 100%;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -995,12 +1060,12 @@ section.show {
   font-size: 40px;
 }
 .container .status .status-box {
-  height: 100%;
+  height: 80%;
   margin-top: 30px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 15px;
 }
 .container .status .status-box .profil-status {
   display: flex;
@@ -1075,7 +1140,7 @@ section.show {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 8px;
+  gap: 15px;
 }
 .container .status .status-box .mix-skill .skill-item {
   position: relative;
