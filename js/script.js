@@ -347,17 +347,6 @@ function showMenu(menuId, element) {
 }
 // MENU BUTTON
 
-const settingIcon = document.querySelector(".settingIcon");
-settingIcon.addEventListener("mouseenter", () => {
-  settingIcon.classList.remove("fa-fire-flame-curved");
-  settingIcon.classList.add("fa-gear");
-});
-
-settingIcon.addEventListener("mouseleave", () => {
-  settingIcon.classList.remove("fa-gear");
-  settingIcon.classList.add("fa-fire-flame-curved");
-});
-
 // RESTART BUTTON
 const restartBtn = document.getElementById("restart");
 const restartCon = document.querySelector(".restart-con");
@@ -760,7 +749,7 @@ function applyLevelTheme(level) {
   const titleRank = document.getElementById("title");
   const classRank = document.querySelector(".rank-name");
   const root = document.documentElement;
-  if (level >= 6) {
+  if (level >= 100) {
     classRank.textContent = "S";
     titleRank.textContent = "Supreme";
     // PINK
@@ -773,7 +762,7 @@ function applyLevelTheme(level) {
     root.style.setProperty("--color-box-border", "#ff00bf");
     root.style.setProperty("--color-border-skill", "#ff00bfa4");
     saveData();
-  } else if (level >= 5) {
+  } else if (level >= 80) {
     classRank.textContent = "A";
     titleRank.textContent = "Master";
 
@@ -787,7 +776,7 @@ function applyLevelTheme(level) {
     root.style.setProperty("--color-box-border", "#daa520");
     root.style.setProperty("--color-border-skill", "#daa520a4");
     saveData();
-  } else if (level >= 4) {
+  } else if (level >= 60) {
     classRank.textContent = "B";
     titleRank.textContent = "Expert";
 
@@ -801,7 +790,7 @@ function applyLevelTheme(level) {
     root.style.setProperty("--color-box-border", "#d32f2f");
     root.style.setProperty("--color-border-skill", "#d32f2fa4");
     saveData();
-  } else if (level >= 3) {
+  } else if (level >= 40) {
     classRank.textContent = "C";
     titleRank.textContent = "Skilled";
 
@@ -815,7 +804,7 @@ function applyLevelTheme(level) {
     root.style.setProperty("--color-box-border", "#8a2be2");
     root.style.setProperty("--color-border-skill", "#8a2be2a4");
     saveData();
-  } else if (level >= 2) {
+  } else if (level >= 20) {
     classRank.textContent = "D";
     titleRank.textContent = "Intermediate";
 

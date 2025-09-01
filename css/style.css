@@ -410,7 +410,6 @@ section.show {
   width: 100%;
   margin: 0 auto;
   max-width: 380px;
-  border: 1px solid;
   transition: all 0.2s ease;
 }
 .container.focus {
