@@ -487,6 +487,13 @@ section.show {
   cursor: pointer;
   text-transform: capitalize;
 }
+.container .info .profil .fire {
+  transition: all 0.3s ease;
+}
+.container .info .profil .fire.active,
+.container .info .profil .fire:hover {
+  color: #fff;
+}
 .container .info .profil .fire,
 .container .info .profil .gear,
 .container .info .profil .return {

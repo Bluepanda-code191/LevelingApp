@@ -507,6 +507,15 @@ section {
         text-transform: capitalize;
       }
 
+      .fire {
+        transition: all 0.3s ease;
+      }
+
+      .fire.active,
+      .fire:hover {
+        color: #fff;
+      }
+
       .fire,
       .gear,
       .return {
